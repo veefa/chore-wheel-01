@@ -1,35 +1,70 @@
-import React from 'react';
-import './index.css';
+// src/App.tsx
+
+import React, { useState } from 'react';
+import './App.css';
 
 const App: React.FC = () => {
+  const [spinning, setSpinning] = useState(false);
+
+  // Dummy tasks
+  const tasks = ['Wash Dishes', 'Vacuum Floor', 'Do Laundry', 'Take Out Trash'];
+
+  const handleSpin = () => {
+    setSpinning(true);
+
+    // Stop spinning after 2 seconds
+    setTimeout(() => {
+      setSpinning(false);
+      // Later we'll randomly select a task here
+    }, 2000);
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 h-screen">
-      <div className="bg-white shadow-lg p-6 rounded-xl w-80">
-        <h1 className="mb-4 font-bold text-gray-700 text-3xl text-center">Chore Wheel</h1>
+    <div className="flex flex-col justify-center items-center bg-gray-100 p-4 min-h-screen">
+      <div className="bg-white shadow-xl p-6 rounded-2xl w-full max-w-md">
+        <h1 className="mb-6 font-bold text-gray-800 text-3xl text-center">Chore Wheel</h1>
 
         {/* Chore Wheel */}
-        <div className="flex justify-center items-center bg-blue-300 mb-6 rounded-full w-full h-64">
-          <span className="font-semibold text-white text-2xl">Spin Me!</span>
+        <div
+          className={`w-64 h-64 bg-blue-400 rounded-full mb-6 flex items-center justify-center transition-transform duration-1000 ease-out ${
+            spinning ? 'animate-spin' : ''
+          }`}
+        >
+          <span className="font-semibold text-white text-xl">Spin Me!</span>
         </div>
 
         {/* Task List */}
         <div className="mb-6">
+          <h2 className="mb-2 font-medium text-gray-700 text-lg">Chores:</h2>
           <ul className="space-y-2">
-            <li className="bg-gray-200 p-2 rounded">Task 1</li>
-            <li className="bg-gray-200 p-2 rounded">Task 2</li>
-            <li className="bg-gray-200 p-2 rounded">Task 3</li>
-            <li className="bg-gray-200 p-2 rounded">Task 4</li>
+            {tasks.map((task, index) => (
+              <li
+                key={index}
+                className="bg-gray-200 shadow-sm px-3 py-2 rounded-lg text-gray-800"
+              >
+                {task}
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Buttons */}
-        <div className="flex justify-center space-x-4">
-          <button className="bg-blue-500 px-4 py-2 rounded text-white">Spin</button>
-          <button className="bg-green-500 px-4 py-2 rounded text-white">Complete Task</button>
+        {/* Controls */}
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={handleSpin}
+            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-xl text-white transition-colors"
+          >
+            Spin
+          </button>
+          <button
+            className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-xl text-white transition-colors"
+          >
+            Complete Task
+          </button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default App;
