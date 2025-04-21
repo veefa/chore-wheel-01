@@ -1,20 +1,29 @@
 // src/components/ChoreWheel.tsx
+
 import React, { useState } from 'react';
-import WheelComponent from './WheelComponent';
+import WheelSVG from '../assets/wheelSvg.svg';
 
 const ChoreWheel: React.FC = () => {
-  const [angle, setAngle] = useState(0); // Total rotation angle
+  // List of chores to label around the wheel
+  const tasks = ['Dishes', 'Laundry', 'Trash', 'Vacuum', 'Cooking', 'Shopping'];
+
+  // Track the rotation angle of the wheel
+  const [angle, setAngle] = useState(0);
+
+  // Track whether the wheel is spinning
   const [spinning, setSpinning] = useState(false);
 
+  // Handle spin button click
   const handleSpin = () => {
-    if (spinning) return;
+    if (spinning) return; // Prevent double spins
 
     setSpinning(true);
-    const randomRotation = 360 * 6 + Math.floor(Math.random() * 360); // 6 full spins + random
 
-    setAngle((prevAngle) => prevAngle + randomRotation);
+    // Calculate a spin of 5 full turns + random extra angle
+    const randomSpin = 360 * 5 + Math.floor(Math.random() * 360);
+    setAngle((prevAngle) => prevAngle + randomSpin);
 
-    // Finish spin after 3s (same as CSS transition duration)
+    // Reset spinning state after animation ends (3s)
     setTimeout(() => {
       setSpinning(false);
     }, 3000);
@@ -22,26 +31,46 @@ const ChoreWheel: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Triangle Pointer */}
+      {/* Outer wheel container with fixed size */}
       <div className="relative w-[500px] h-[500px]">
-        <div className="top-[-20px] left-1/2 absolute text-3xl -translate-x-1/2 transform">
+        {/* Triangle pointer at top center */}
+        <div className="top-[-20px] left-1/2 z-10 absolute text-black text-xl -translate-x-1/2 transform">
           ▲
         </div>
 
-        {/* Wheel with rotation */}
+        {/* Rotating SVG wheel */}
         <div
-          className="transition-transform duration-[3000ms] ease-out"
+          className="w-full h-full transition-transform duration-[3000ms] ease-out"
           style={{ transform: `rotate(${angle}deg)` }}
         >
-          <WheelComponent />
+          <WheelSVG />
+
+          {/* Task labels positioned evenly around the wheel */}
+          {tasks.map((task, index) => {
+            const rotate = (360 / tasks.length) * index;
+
+            return (
+              <div
+                key={task}
+                className="top-1/2 left-1/2 absolute font-medium text-white text-sm origin-center"
+                style={{
+                  // Rotate and move label outward, then unrotate to keep it upright
+                  transform: `rotate(${rotate}deg) translateY(-220px) rotate(-${rotate}deg)`,
+                }}
+              >
+                {task}
+              </div>
+            );
+          })}
         </div>
       </div>
 
+      {/* Spin button */}
       <button
         onClick={handleSpin}
         disabled={spinning}
-        className={`bg-blue-600 hover:bg-blue-700 mt-6 px-4 py-2 rounded-xl text-white transition ${
-          spinning ? 'opacity-50 cursor-not-allowed' : ''
+        className={`mt-6 px-4 py-2 rounded-xl text-white transition ${
+          spinning ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
         }`}
       >
         {spinning ? 'Spinning...' : 'Spin the Wheel'}
