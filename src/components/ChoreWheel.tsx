@@ -70,7 +70,7 @@ const ChoreWheel: React.FC = () => {
         onClick={handleSpin}
         disabled={spinning}
         className={`mt-6 px-4 py-2 rounded-xl text-white transition ${
-          spinning ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+          spinning ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-950 hover:bg-blue-800'
         }`}
       >
         {spinning ? 'Spinning...' : 'Spin the Wheel'}
