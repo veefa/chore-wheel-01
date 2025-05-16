@@ -1,5 +1,5 @@
 // src/components/WheelComponent.tsx
-import React from 'react';
+import React from "react";
 
 interface WheelComponentProps {
   tasks: string[];
@@ -11,7 +11,11 @@ const WheelComponent: React.FC<WheelComponentProps> = ({ tasks }) => {
   const centerY = 250;
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="508" height="508" viewBox="0 0 508 508" fill="none">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 508 508"
+      className="w-full h-full"
+      fill="none">
       {/* Outer Wheel Background with Drop Shadow */}
       <g filter="url(#filter0_d_0_1)">
         <circle cx="254" cy="250" r="250" fill="#040C1B" />
@@ -19,12 +23,42 @@ const WheelComponent: React.FC<WheelComponentProps> = ({ tasks }) => {
       </g>
 
       {/* Static Divider Lines */}
-      <path d="M6 250L502 250" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
-      <path d="M39.4267 374.75L468.975 126.75" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
-      <path d="M128.28 463.2L376.28 33.6514" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
-      <path d="M254 2L254 498" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
-      <path d="M39 127L468.549 375" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
-      <path d="M129.876 35.8775L377.876 465.426" stroke="#273C62" strokeWidth="3" strokeLinecap="round" />
+      <path
+        d="M6 250L502 250"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M39.4267 374.75L468.975 126.75"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M128.28 463.2L376.28 33.6514"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M254 2L254 498"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M39 127L468.549 375"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M129.876 35.8775L377.876 465.426"
+        stroke="#273C62"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
 
       {/* Center Circle */}
       <circle cx="254" cy="248" r="15" fill="#273C62" />
@@ -57,8 +91,7 @@ const WheelComponent: React.FC<WheelComponentProps> = ({ tasks }) => {
             alignmentBaseline="middle"
             fill="#fff"
             fontSize="18"
-            fontFamily="sans-serif"
-          >
+            fontFamily="sans-serif">
             {task}
           </text>
         );
@@ -66,7 +99,13 @@ const WheelComponent: React.FC<WheelComponentProps> = ({ tasks }) => {
 
       {/* SVG Filter for drop shadow */}
       <defs>
-        <filter id="filter0_d_0_1" x="0" y="0" width="508" height="508" filterUnits="userSpaceOnUse">
+        <filter
+          id="filter0_d_0_1"
+          x="0"
+          y="0"
+          width="508"
+          height="508"
+          filterUnits="userSpaceOnUse">
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
@@ -81,8 +120,17 @@ const WheelComponent: React.FC<WheelComponentProps> = ({ tasks }) => {
             type="matrix"
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
           />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_0_1"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_0_1"
+            result="shape"
+          />
         </filter>
       </defs>
     </svg>
