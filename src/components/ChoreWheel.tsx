@@ -75,10 +75,10 @@ const ChoreWheel: React.FC = () => {
       {/* Selected Task Popup Notification */}
       {selectedTask && (
       <div className="z-50 fixed inset-0 flex justify-center items-center">
-        <div className="relative bg-white shadow-lg px-8 py-6 border border-slate-200 rounded-xl text-slate-700 text-xl">
+        <div className="relative bg-slate-300 shadow-lg px-8 py-6 border border-slate-200 rounded-xl text-slate-700 text-xl">
         {/* Dismiss Button */}
         <button
-          className="top-2 right-2 absolute flex items-center text-slate-400 hover:text-red-500 text-base"
+          className="top-2 right-2 absolute flex items-center text-slate-400 text-base"
           onClick={() => setSelectedTask(null)}
           aria-label="Dismiss"
         >
