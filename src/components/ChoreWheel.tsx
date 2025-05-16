@@ -52,7 +52,7 @@ const ChoreWheel: React.FC = () => {
     <div className="flex flex-col items-center px-2 sm:px-0 w-full">
       {/* Triangle Pointer on the right */}
       <div className="relative w-full sm:max-w-[500px] max-w-xs aspect-square">
-        <div className="top-1/2 -right-5 absolute text-slate-800 text-2xl sm:text-3xl -rotate-180 -translate-y-1/2 pointer-events-none select-none">
+        <div className="top-1/2 -right-4 absolute text-slate-800 text-2xl sm:text-3xl -rotate-180 -translate-y-1/2 pointer-events-none select-none">
           ▶
         </div>
 
